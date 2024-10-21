@@ -1,3 +1,93 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "plugins": ["import", "eslint-plugin-no-inline-styles", "extra-rules"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "no-var": "error",
+    "import/no-named-as-default": 0,
+    "no-restricted-imports": [
+      "error",
+      { "name": "query-string", "message": "Please use qs instead." }
+    ],
+    "require-await": "error",
+    "arrow-body-style": ["error", "as-needed"],
+    "prefer-const": "error",
+    "no-shadow": "error",
+    "object-shorthand": "error",
+    "no-nested-ternary": "error",
+    "no-dupe-else-if": "error",
+    "array-callback-return": "error",
+    "eqeqeq": "error",
+    "no-else-return": "error",
+    "no-return-await": "error",
+    "no-console": "error",
+    "extra-rules/no-commented-out-code": "error",
+    "no-inline-styles/no-inline-styles": 1,
+    "import/order": [
+      "error",
+      {
+        "alphabetize": { "order": "asc", "caseInsensitive": true },
+        "newlines-between": "always",
+        "pathGroups": [
+          { "pattern": "react", "group": "external", "position": "before" },
+          { "pattern": "next", "group": "external", "position": "before" },
+          { "pattern": "@/styles/**", "group": "parent", "position": "before" },
+          { "pattern": "@/hooks/**", "group": "parent", "position": "before" },
+          {
+            "pattern": "@/services/**",
+            "group": "parent",
+            "position": "before"
+          },
+          {
+            "pattern": "@/constants/**",
+            "group": "parent",
+            "position": "before"
+          },
+          {
+            "pattern": "@/helpers/**",
+            "group": "parent",
+            "position": "before"
+          },
+          {
+            "pattern": "@/components/**",
+            "group": "parent",
+            "position": "before"
+          },
+          { "pattern": "@/features/**", "group": "parent" }
+        ],
+        "groups": [
+          "builtin",
+          "external",
+          "index",
+          "parent",
+          ["internal", "sibling"]
+        ]
+      }
+    ]
+  },
+  "settings": {
+    "typescript": {},
+    "import/resolver": {
+      "typescript": {
+        "project": [
+          "./tsconfig.json",
+          "apps/*/tsconfig.json",
+          "packages/*/tsconfig.json"
+        ]
+      }
+    },
+    "react": {
+      "version": "detect"
+    }
+  }
 }
