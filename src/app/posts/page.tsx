@@ -1,5 +1,7 @@
 import React from 'react'
 
-const page = () => <div>Posts Page</div>
+import PostsView from '@/features/posts/components/PostsView'
+
+const page = () => <PostsView />
 
 export default page

@@ -29,7 +29,7 @@ const DebouncedInput: FC<DebouncedInputProps> = ({
     }, debounce)
 
     return () => clearTimeout(timeout)
-  }, [value, onChange, debounce])
+  }, [value])
 
   return (
     <div className="w-full relative rounded-md shadow-sm">

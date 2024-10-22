@@ -1,5 +1,4 @@
 import { Column, Table } from '@tanstack/react-table'
-import { useMemo } from 'react'
 
 import DebouncedInput from '@/components/common/DebouncedInput/DebouncedInput'
 
@@ -14,14 +13,6 @@ export default function Filter<T>({ column, table }: FilterProps<T>) {
     .flatRows[0]?.getValue(column.id)
 
   const columnFilterValue = column.getFilterValue()
-
-  const sortedUniqueValues = useMemo(
-    () =>
-      typeof firstValue === 'number'
-        ? []
-        : Array.from(column.getFacetedUniqueValues().keys()).sort(),
-    [column.getFacetedUniqueValues()]
-  )
 
   if (typeof firstValue === 'number') {
     return (
@@ -71,11 +62,6 @@ export default function Filter<T>({ column, table }: FilterProps<T>) {
 
   return (
     <>
-      <datalist id={column.id + 'list'}>
-        {sortedUniqueValues
-          .slice(0, 5)
-          ?.map((value) => <option value={value} key={value} />)}
-      </datalist>
       <DebouncedInput
         className="mt-1 text-sm font-normal w-48 rounded-md"
         type="text"

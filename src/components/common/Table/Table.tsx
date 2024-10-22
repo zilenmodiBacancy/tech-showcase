@@ -14,7 +14,7 @@ import {
   TableOptions,
   RowSelectionState,
 } from '@tanstack/react-table'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import Button from '@/components/common/Button/Button'
 import Dropdown from '@/components/common/Dropdown/Dropdown'
@@ -29,7 +29,6 @@ interface ITable<T> {
   columns: ColumnDef<T, any>[]
   showGlobalFilter?: boolean
   showColumnFilter?: boolean
-  showColumnVisibilityFilter?: boolean
   showPaginatedRow?: boolean
   showGlobalFooter?: boolean
   showColumnSort?: boolean
@@ -53,7 +52,6 @@ export function Table<T>({
   showPaginatedRow = false,
   showGlobalFooter = false,
   showColumnSort = false,
-  getTableRowData,
   pagination,
   setPagination,
   showRowSelection = false,
@@ -109,11 +107,6 @@ export function Table<T>({
   const table = useReactTable(tableConfig)
 
   // TODO: Added Temporary solution to lift up table row's state to parent component using useEffect, Need to figure it out standard way to lift up table state to parent component.
-  useEffect(() => {
-    getTableRowData?.(
-      table.getRowModel().rows.map((currRow) => currRow.original)
-    )
-  }, [sorting, columnFilters])
 
   return (
     <div className="mt-4 flow-root">
@@ -243,6 +236,7 @@ export function Table<T>({
 
                 <div className="w-28">
                   <Dropdown
+                    name="pagination"
                     value={String(table.getState().pagination.pageSize)}
                     onChangeHandler={(e) => {
                       table.setPageSize(Number(e.target.value))

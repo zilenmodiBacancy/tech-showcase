@@ -55,6 +55,7 @@ const AddUserSlider: FC<PropsType> = ({
       userData: data,
       onSuccessResponse: () => {
         setAddPersonSlierOpen(false)
+        reset()
       },
     })
   }
