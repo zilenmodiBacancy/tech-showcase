@@ -79,11 +79,8 @@
     "typescript": {},
     "import/resolver": {
       "typescript": {
-        "project": [
-          "./tsconfig.json",
-          "apps/*/tsconfig.json",
-          "packages/*/tsconfig.json"
-        ]
+        "alwaysTryTypes": true,
+        "project": "./tsconfig.json"
       }
     },
     "react": {
